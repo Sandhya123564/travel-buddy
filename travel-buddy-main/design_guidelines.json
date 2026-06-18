@@ -1,0 +1,175 @@
+{
+  "identity": {
+    "name": "Travel Buddy MVP",
+    "theme_mode": "light",
+    "tone": "Modern, Vibrant, Trustworthy, Adventurous",
+    "description": "A platform connecting travelers with verified travel companions."
+  },
+  "typography": {
+    "font_family_heading": "Outfit, sans-serif",
+    "font_family_body": "DM Sans, sans-serif",
+    "scale": {
+      "h1": "text-5xl md:text-7xl font-bold tracking-tight leading-tight",
+      "h2": "text-3xl md:text-5xl font-semibold tracking-tight",
+      "h3": "text-2xl md:text-3xl font-semibold",
+      "p": "text-base md:text-lg leading-relaxed text-slate-600",
+      "caption": "text-sm text-slate-500 font-medium tracking-wide uppercase"
+    },
+    "installation_instructions": "Add '@import url(\"https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=Outfit:wght@100..900&display=swap\");' to index.css"
+  },
+  "colors": {
+    "primary": {
+      "DEFAULT": "#2563EB",
+      "foreground": "#FFFFFF",
+      "50": "#eff6ff",
+      "100": "#dbeafe",
+      "200": "#bfdbfe",
+      "300": "#93c5fd",
+      "400": "#60a5fa",
+      "500": "#3b82f6",
+      "600": "#2563EB",
+      "700": "#1d4ed8",
+      "800": "#1e40af",
+      "900": "#1e3a8a"
+    },
+    "secondary": {
+      "DEFAULT": "#FBBF24",
+      "foreground": "#1F2937",
+      "50": "#fffbeb",
+      "100": "#fef3c7",
+      "200": "#fde68a",
+      "300": "#fcd34d",
+      "400": "#FBBF24",
+      "500": "#f59e0b",
+      "600": "#d97706",
+      "700": "#b45309",
+      "800": "#92400e",
+      "900": "#78350f"
+    },
+    "accent": {
+      "DEFAULT": "#10B981",
+      "foreground": "#FFFFFF"
+    },
+    "background": {
+      "DEFAULT": "#F8FAFC",
+      "paper": "#FFFFFF"
+    },
+    "foreground": {
+      "DEFAULT": "#0F172A",
+      "muted": "#64748B"
+    },
+    "border": "#E2E8F0",
+    "input": "#E2E8F0",
+    "ring": "#2563EB"
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "card": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+      "card_hover": "shadow-[0_8px_30px_rgb(0,0,0,0.08)]",
+      "floating": "shadow-[0_20px_50px_rgb(0,0,0,0.1)]",
+      "inner": "shadow-inner"
+    },
+    "radius": {
+      "default": "rounded-xl",
+      "card": "rounded-2xl",
+      "button": "rounded-full",
+      "input": "rounded-lg"
+    },
+    "gradients": {
+      "hero_overlay": "bg-gradient-to-b from-transparent via-transparent to-slate-900/80",
+      "primary_subtle": "bg-gradient-to-br from-blue-50 to-indigo-50",
+      "text_gradient": "bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600"
+    },
+    "borders": {
+      "subtle": "border border-slate-200",
+      "glass": "border border-white/20"
+    }
+  },
+  "layout_strategies": {
+    "container": "container mx-auto px-4 md:px-6 max-w-7xl",
+    "section_spacing": "py-16 md:py-24 lg:py-32",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]",
+    "card_grid": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+  },
+  "components": {
+    "Button": {
+      "base": "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+      "variants": {
+        "default": "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-blue-500/20 active:scale-95",
+        "secondary": "bg-white text-secondary-foreground hover:bg-slate-50 border border-slate-200 shadow-sm",
+        "ghost": "hover:bg-slate-100 hover:text-slate-900",
+        "outline": "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        "link": "text-primary underline-offset-4 hover:underline"
+      },
+      "sizes": {
+        "default": "h-11 px-8 py-2",
+        "sm": "h-9 rounded-md px-3",
+        "lg": "h-14 rounded-full px-10 text-base",
+        "icon": "h-10 w-10"
+      }
+    },
+    "Card": {
+      "wrapper": "bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 overflow-hidden",
+      "header": "p-6 pb-2",
+      "content": "p-6 pt-0",
+      "footer": "p-6 pt-0 flex items-center"
+    },
+    "Input": {
+      "base": "flex h-12 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200"
+    }
+  },
+  "image_urls": [
+    {
+      "category": "hero_main",
+      "url": "https://images.pexels.com/photos/4173205/pexels-photo-4173205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Professionals smiling in an airport terminal, used for main hero section to show trust and connection."
+    },
+    {
+      "category": "hero_secondary",
+      "url": "https://images.pexels.com/photos/16105918/pexels-photo-16105918.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Woman looking out airplane window, used for atmospheric/emotional sections."
+    },
+    {
+      "category": "buddy_portrait_1",
+      "url": "https://images.pexels.com/photos/5639947/pexels-photo-5639947.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Close-up of smiling man, used for Buddy Profile example."
+    },
+    {
+      "category": "buddy_portrait_2",
+      "url": "https://images.pexels.com/photos/13335033/pexels-photo-13335033.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Happy couple, used for Testimonial or 'Success Story' section."
+    }
+  ],
+  "accessibility_rules": [
+    "Ensure 4.5:1 contrast ratio for all text.",
+    "Interactive elements must have a min-target size of 44x44px.",
+    "Use distinct focus rings (ring-2 ring-offset-2) for keyboard navigation.",
+    "All images must have descriptive alt text.",
+    "Do not rely on color alone to convey status (use icons + text)."
+  ],
+  "motion_guidelines": {
+    "hover": "transition-transform duration-200 ease-out hover:-translate-y-1",
+    "fade_in": "animate-in fade-in duration-500",
+    "slide_up": "animate-in slide-in-from-bottom-4 duration-500"
+  },
+  "universal_guidelines": [
+    "Do NOT use 'Inter' font. Use 'Outfit' for headings and 'DM Sans' for body.",
+    "Avoid default shadcn 'zinc' colors. Use the specific 'slate' and 'blue' palette defined above.",
+    "Use 'rounded-full' for primary action buttons to make them feel friendly.",
+    "Add ample whitespace. Use 'py-24' for section spacing instead of 'py-10'.",
+    "Shadows should be colored and diffuse (shadow-blue-500/20), not just black.",
+    "Always include a 'Verified' badge (green checkmark) component for Buddy profiles.",
+    "Use 'lucide-react' for icons. Icons should be 20px (w-5 h-5) generally.",
+    "Forms should be split into manageable steps if complex (e.g., Buddy Registration).",
+    "All interactive elements must have 'data-testid' attributes."
+  ],
+  "instructions_to_main_agent": [
+    "1. Install the fonts first in index.css.",
+    "2. Update tailwind.config.js with the custom colors (primary: blue-600, etc) and fonts.",
+    "3. Create a 'Layout' component that wraps pages with the Navbar and Footer.",
+    "4. Implement the 'Hero' section using the 'hero_main' image in an asymmetric layout.",
+    "5. Build the 'BuddyCard' component with the 'verified' badge and hover effects.",
+    "6. Ensure the 'Dashboard' uses a sidebar layout with the specific background colors.",
+    "7. Use the defined 'shadows' and 'radius' values for all containers."
+  ]
+}
