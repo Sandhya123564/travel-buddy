@@ -1,8 +1,8 @@
 fastapi
 uvicorn
 motor
-python-dotenv
 requests
+python-dotenv
 bcrypt
 pyjwt
 python-multipart
