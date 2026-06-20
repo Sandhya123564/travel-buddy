@@ -227,7 +227,8 @@ def generate_otp() -> str:
 async def send_email(to: str, subject: str, content: str):
     """Send email via SendGrid (mocked if no API key)"""
     if not SENDGRID_API_KEY:
-        logger.info(f"[MOCK EMAIL] To: {to}, Subject: {subject}")
+        logger.info(f"[MOCK EMAIL] To: {to}")
+        logger.info(f"CONTENT: {content}")
         return True
     
     try:
