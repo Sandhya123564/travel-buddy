@@ -52,13 +52,12 @@ export default function AdminPanel() {
   const [actionLoading, setActionLoading] = useState(false);
 
   useEffect(() => {
-    if (user?.role !== 'admin') {
-      navigate('/');
-      return;
-    }
-    fetchData();
-  }, [user]);
-
+  if (user?.role !== 'admin') {
+    navigate('/');
+    return;
+  }
+  fetchData();
+}, [user, navigate]);
   const fetchData = async () => {
     try {
       const [statsRes, buddiesRes, bookingsRes] = await Promise.all([

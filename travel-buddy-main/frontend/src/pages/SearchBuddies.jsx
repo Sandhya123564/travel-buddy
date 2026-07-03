@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { buddyAPI } from '../lib/api';
 import { BuddyCard } from '../components/BuddyCard';
@@ -22,8 +22,17 @@ import {
 } from 'lucide-react';
 
 const languages = [
-  'English', 'Spanish', 'French', 'German', 'Chinese', 'Japanese', 
-  'Korean', 'Arabic', 'Hindi', 'Portuguese', 'Russian', 'Italian'
+  'English',
+  'Spanish',
+  'French',
+  'German',
+  'Japanese',
+  'Korean',
+  'Arabic',
+  'Hindi',
+  'Portuguese',
+  'Russian',
+  'Italian'
 ];
 
 export default function SearchBuddies() {
@@ -44,28 +53,29 @@ export default function SearchBuddies() {
     searchParams.get('date') ? new Date(searchParams.get('date')) : undefined
   );
 
-  const fetchBuddies = async () => {
-    setLoading(true);
-    try {
-      const params = {};
-      if (filters.travel_date) params.travel_date = filters.travel_date;
-      if (filters.departure_airport) params.departure_airport = filters.departure_airport;
-      if (filters.arrival_airport) params.arrival_airport = filters.arrival_airport;
-      if (filters.language) params.language = filters.language;
-      if (filters.min_experience) params.min_experience = parseInt(filters.min_experience);
-      
-      const res = await buddyAPI.search(params);
-      setBuddies(res.data);
-    } catch (error) {
-      console.error('Failed to fetch buddies:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchBuddies = useCallback(async () => {
+  setLoading(true);
+  try {
+    const params = {};
+    if (filters.travel_date) params.travel_date = filters.travel_date;
+    if (filters.departure_airport) params.departure_airport = filters.departure_airport;
+    if (filters.arrival_airport) params.arrival_airport = filters.arrival_airport;
+    if (filters.language) params.language = filters.language;
+    if (filters.min_experience)
+      params.min_experience = parseInt(filters.min_experience);
+
+    const res = await buddyAPI.search(params);
+    setBuddies(res.data);
+  } catch (error) {
+    console.error('Failed to fetch buddies:', error);
+  } finally {
+    setLoading(false);
+  }
+}, [filters]);
 
   useEffect(() => {
-    fetchBuddies();
-  }, []);
+  fetchBuddies();
+}, [fetchBuddies]);
 
   const handleSearch = (e) => {
     e.preventDefault();

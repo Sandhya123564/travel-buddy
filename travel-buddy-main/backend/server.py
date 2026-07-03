@@ -14,6 +14,7 @@ import bcrypt
 import jwt
 import secrets
 import shutil
+import requests
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -29,8 +30,8 @@ JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = 24
 
 # SendGrid Configuration
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', '')
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'noreply@travelbuddy.com')
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "")
 
 # File upload directory
 UPLOAD_DIR = ROOT_DIR / "uploads"
@@ -224,34 +225,37 @@ async def get_current_user(authorization: str = Header(None)):
 def generate_otp() -> str:
     return str(secrets.randbelow(900000) + 100000)
 
-async def send_email(to: str, subject: str, content: str):
-    """Send email via SendGrid (mocked if no API key)"""
-    if not SENDGRID_API_KEY:
-        logger.info(f"[MOCK EMAIL] To: {to}")
-        logger.info(f"CONTENT: {content}")
-        return True
-    
+async def send_email(to, subject, content):
+    url = "https://api.brevo.com/v3/smtp/email"
+
+    headers = {
+        "accept": "application/json",
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json"
+    }
+
+    data = {
+        "sender": {"email": SENDER_EMAIL},
+        "to": [{"email": to}],
+        "subject": subject,
+        "htmlContent": content
+    }
+
     try:
-        from sendgrid import SendGridAPIClient
-        from sendgrid.helpers.mail import Mail
-        
-        message = Mail(
-            from_email=SENDER_EMAIL,
-            to_emails=to,
-            subject=subject,
-            html_content=content
-        )
-        sg = SendGridAPIClient(SENDGRID_API_KEY)
-        sg.send(message)
-        return True
+        response = requests.post(url, headers=headers, json=data)
+        print("Status:", response.status_code)
+        print(response.text)
+        return response.status_code == 201
     except Exception as e:
-        logger.error(f"Email send failed: {e}")
+        print("Email Error:", e)
         return False
 
 # ============ AUTH ENDPOINTS ============
 
 @api_router.post("/auth/register", response_model=TokenResponse)
 async def register(user_data: UserCreate, background_tasks: BackgroundTasks):
+    print("REGISTER DATA:", user_data)
+    print("ROLE RECEIVED:", user_data.role)
     # Check if user exists
     existing = await db.users.find_one({"email": user_data.email})
     if existing:
@@ -404,8 +408,8 @@ async def search_buddies(
     language: Optional[str] = None,
     min_experience: Optional[int] = None
 ):
-    # Only show verified buddies
-    query = {"status": "verified"}
+    # Show all buddies (for testing)
+    query = {}
     
     if language:
         query["languages"] = {"$in": [language]}
@@ -419,6 +423,7 @@ async def search_buddies(
         ("experience_years", -1),
         ("completed_journeys", -1)
     ]).to_list(100)
+    print("Buddies:",buddies)
     
     # Enrich with user data
     for buddy in buddies:
@@ -904,3 +909,13 @@ async def create_default_admin():
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+import os
+import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "server:app",
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 8000)),
+        reload=False
+    )

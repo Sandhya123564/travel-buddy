@@ -72,7 +72,7 @@ export default function BuddyDashboard() {
       return;
     }
     fetchData();
-  }, [user]);
+  }, [user, navigate]);
 
   const fetchData = async () => {
     try {
