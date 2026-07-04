@@ -38,6 +38,7 @@ export const authAPI = {
   verifyOTP: (data) => api.post('/auth/verify-otp', data),
   resendOTP: (email) => api.post(`/auth/resend-otp?email=${email}`),
   getMe: () => api.get('/auth/me'),
+  becomeBuddy: () => api.post('/auth/become-buddy'),
 };
 
 // Buddy APIs

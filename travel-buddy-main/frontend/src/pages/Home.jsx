@@ -1,4 +1,6 @@
 import React from 'react';
+import { useAuth } from '../context/AuthContext';
+import { authAPI } from '../lib/api';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
@@ -16,6 +18,7 @@ import {
 
 export default function Home() {
   const navigate = useNavigate();
+  const { user, updateUser } = useAuth();
 
   const features = [
     {
@@ -96,15 +99,35 @@ export default function Home() {
                   Find a Buddy
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate('/register?role=buddy')}
-                  className="rounded-full px-8 h-14 text-base border-slate-200"
-                  data-testid="hero-become-buddy"
-                >
-                  Become a Buddy
-                </Button>
+                <Button
+  size="lg"
+  variant="outline"
+  onClick={async () => {
+    if (user) {
+      try {
+        await authAPI.becomeBuddy();
+
+        const updatedUser = {
+          ...user,
+          role: "buddy",
+        };
+
+        updateUser(updatedUser);
+        navigate("/buddy/dashboard");
+      } catch (err) {
+  console.log(err);
+  console.log(err.response);
+  alert(err.response?.data?.detail || err.message);
+}
+    } else {
+      navigate("/register?role=buddy");
+    }
+  }}
+  className="rounded-full px-8 h-14 text-base border-slate-200"
+  data-testid="hero-become-buddy"
+>
+  Become a Buddy
+</Button>
               </div>
             </div>
             <div className="relative animate-slide-up">

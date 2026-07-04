@@ -342,6 +342,40 @@ async def login(credentials: UserLogin):
         )
     )
 
+@api_router.post("/auth/become-buddy")
+async def become_buddy(authorization: str = Header(None)):
+    user = await get_current_user(authorization)
+
+    if user["role"] == "buddy":
+        return {"message": "Already a buddy"}
+
+    await db.users.update_one(
+        {"id": user["id"]},
+        {"$set": {"role": "buddy"}}
+    )
+
+    existing = await db.buddy_profiles.find_one({"user_id": user["id"]})
+
+    if not existing:
+        buddy_profile = {
+            "id": str(uuid.uuid4()),
+            "user_id": user["id"],
+            "experience_years": 0,
+            "languages": [],
+            "bio": None,
+            "hourly_rate": 0,
+            "status": "pending",
+            "rating_avg": 0,
+            "total_reviews": 0,
+            "completed_journeys": 0,
+            "availability": [],
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+
+        await db.buddy_profiles.insert_one(buddy_profile)
+
+    return {"message": "You are now a buddy"}
+
 @api_router.post("/auth/verify-otp")
 async def verify_otp(data: OTPVerify):
     user = await db.users.find_one({"email": data.email}, {"_id": 0})
