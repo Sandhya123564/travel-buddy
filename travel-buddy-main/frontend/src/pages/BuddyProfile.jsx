@@ -209,7 +209,7 @@ export default function BuddyProfile() {
                   )}
                   <div className="flex items-center gap-3 text-sm">
                     <Clock className="w-4 h-4 text-slate-400" />
-                    <span>${buddy.hourly_rate || 0}/hour</span>
+                    
                   </div>
                 </div>
 
@@ -389,7 +389,7 @@ export default function BuddyProfile() {
             <div className="bg-slate-50 rounded-lg p-4">
               <div className="flex justify-between text-sm">
                 <span className="text-slate-500">Hourly Rate</span>
-                <span className="font-semibold">${buddy?.hourly_rate || 0}/hour</span>
+                
               </div>
             </div>
           </div>

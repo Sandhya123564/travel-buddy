@@ -90,7 +90,7 @@ export function BuddyCard({ buddy }) {
               <span className="text-lg font-heading font-bold text-foreground">
             
               </span>
-              <span className="text-sm text-muted-foreground">/hour</span>
+              
             </div>
             <Button 
               size="sm" 

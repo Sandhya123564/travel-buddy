@@ -226,7 +226,7 @@ export default function AdminPanel() {
                             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500 mt-1">
                               <span>{buddy.experience_years || 0} years exp</span>
                               <span>{buddy.languages?.length || 0} languages</span>
-                              <span>${buddy.hourly_rate || 0}/hr</span>
+                              
                             </div>
                           </div>
                         </div>
