@@ -128,14 +128,6 @@ export default function Login() {
                 </Link>
               </p>
             </div>
-
-            {/* Demo Credentials */}
-            <div className="mt-6 p-4 bg-slate-50 rounded-xl">
-              <p className="text-xs text-slate-500 text-center mb-2">Demo Admin Credentials</p>
-              <p className="text-xs text-slate-600 text-center font-mono">
-                admin@travelbuddy.com / Admin123!
-              </p>
-            </div>
           </CardContent>
         </Card>
       </div>

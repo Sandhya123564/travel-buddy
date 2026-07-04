@@ -63,7 +63,7 @@ export default function BuddyDashboard() {
     experience_years: 0,
     languages: [],
     bio: '',
-    hourly_rate: 0
+
   });
 
   useEffect(() => {
@@ -90,7 +90,7 @@ export default function BuddyDashboard() {
         experience_years: profileRes.data.experience_years || 0,
         languages: profileRes.data.languages || [],
         bio: profileRes.data.bio || '',
-        hourly_rate: profileRes.data.hourly_rate || 0
+        
       });
       
       setSelectedDates(

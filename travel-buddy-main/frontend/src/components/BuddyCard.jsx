@@ -88,7 +88,7 @@ export function BuddyCard({ buddy }) {
           <div className="flex items-center justify-between pt-3 border-t border-slate-100">
             <div>
               <span className="text-lg font-heading font-bold text-foreground">
-                ${buddy.hourly_rate || 0}
+            
               </span>
               <span className="text-sm text-muted-foreground">/hour</span>
             </div>

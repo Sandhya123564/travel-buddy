@@ -88,7 +88,7 @@ export default function BuddyProfile() {
         arrival_airport: bookingData.arrival_airport,
         flight_number: bookingData.flight_number,
         notes: bookingData.notes,
-        price: buddy?.hourly_rate || 0
+      
       });
       
       toast.success('Booking request sent!');

@@ -333,7 +333,7 @@ export default function AdminPanel() {
                               </Badge>
                             </td>
                             <td className="py-3 px-4 text-sm font-medium">
-                              ${booking.price || 0}
+                              
                             </td>
                           </tr>
                         ))}
